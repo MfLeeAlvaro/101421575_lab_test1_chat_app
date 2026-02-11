@@ -1,0 +1,248 @@
+{
+  "info": {
+    "name": "COMP3133 Chat App API",
+    "description": "All REST API endpoints for the COMP3133 Lab Test 1 Chat App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"john_doe\",\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "signup"]
+            },
+            "description": "Create a new user account. Username must be unique."
+          },
+          "response": []
+        },
+        {
+          "name": "Signup - Duplicate Username (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"john_doe\",\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "signup"]
+            },
+            "description": "Attempt to create a user with an existing username. Should return 409 error."
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"john_doe\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "login"]
+            },
+            "description": "Login with existing credentials. Returns username, firstname, and JWT token."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            },
+            "description": "Get all registered users (passwords excluded)."
+          },
+          "response": []
+        },
+        {
+          "name": "Login - Wrong Password (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"john_doe\",\n  \"password\": \"wrongpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "login"]
+            },
+            "description": "Attempt login with wrong password. Should return 401 error."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Get Group Messages - devops",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/messages/group?room=devops",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "messages", "group"],
+              "query": [
+                {
+                  "key": "room",
+                  "value": "devops"
+                }
+              ]
+            },
+            "description": "Get all group messages for the 'devops' room."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Group Messages - cloud computing",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/messages/group?room=cloud computing",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "messages", "group"],
+              "query": [
+                {
+                  "key": "room",
+                  "value": "cloud computing"
+                }
+              ]
+            },
+            "description": "Get all group messages for the 'cloud computing' room."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Group Messages - covid19",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/messages/group?room=covid19",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "messages", "group"],
+              "query": [
+                {
+                  "key": "room",
+                  "value": "covid19"
+                }
+              ]
+            },
+            "description": "Get all group messages for the 'covid19' room."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Group Messages - sports",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/messages/group?room=sports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "messages", "group"],
+              "query": [
+                {
+                  "key": "room",
+                  "value": "sports"
+                }
+              ]
+            },
+            "description": "Get all group messages for the 'sports' room."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Group Messages - nodeJS",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/messages/group?room=nodeJS",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "messages", "group"],
+              "query": [
+                {
+                  "key": "room",
+                  "value": "nodeJS"
+                }
+              ]
+            },
+            "description": "Get all group messages for the 'nodeJS' room."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Private Messages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/messages/private?me=john_doe&with=testuser",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "messages", "private"],
+              "query": [
+                {
+                  "key": "me",
+                  "value": "john_doe"
+                },
+                {
+                  "key": "with",
+                  "value": "testuser"
+                }
+              ]
+            },
+            "description": "Get private messages between two users. Change 'me' and 'with' params to the desired usernames."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
